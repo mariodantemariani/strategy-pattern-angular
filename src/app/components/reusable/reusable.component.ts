@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   GreetingService,
@@ -18,7 +18,9 @@ export class ReusableComponent implements OnInit {
   public greet: string = '';
   @Input() language: string = '';
 
-  constructor(private greetingService: GreetingService) {}
+  greetingService = inject(GreetingService);
+
+  constructor() {}
 
   ngOnInit(): void {
     this.greetingService.setStrategy(this.language);
